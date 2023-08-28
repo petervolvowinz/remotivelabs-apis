@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package base;
+option go_package = "./;base";
+
+/**
+ * Read data by service identifier
+ *
+ * Data identifiers:
+ * - 0x22 read data by identinifier (Service id).
+ * - 0x1f90 DID (Data identifier) for VIN number.
+ */
+service DiagnosticsService {
+  /// Send diagnostics request
+  rpc SendDiagnosticsQuery (DiagnosticsRequest) returns (DiagnosticsResponse) {}
+}
+
+/// Parameters for a diagnostics query
+message DiagnosticsRequest {
+  SignalId upLink = 1;          /// Signal for setting up link
+  SignalId downLink = 2;        /// Signal for closing link
+  bytes serviceId = 3;          /// Service identifier
+  bytes dataIdentifier = 4;     /// Data identifier
+}
+
+/// Response from a diagnostics query
+message DiagnosticsResponse {
+  bytes raw = 5; /// Payload
+}

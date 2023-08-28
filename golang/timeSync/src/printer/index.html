@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html> <title>Remotive Labs Signal Broker Png Printer</title>
+<head>
+    <p> Remotive labs , Volvo Cars (c), 2023</p>
+</head>
+
+
+<script>
+
+
+    function refresh() {
+        document.getElementById('plotter').src = 'plot.png';
+    }
+
+    function reloadGraph() {
+
+        var now = new Date();
+        document.images['graph'].src = 'plot1.png?' + now.getTime();
+        timeoutID = setTimeout('reloadGraph()', 100);
+
+    }
+
+</script>
+
+<body onLoad="reloadGraph()">
+<img id="graph" src="plot1.png" alt="My updating graph" />
+</body>
+
+</html></html>
